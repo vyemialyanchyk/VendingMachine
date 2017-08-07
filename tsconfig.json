@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es6",
+		"experimentalDecorators": true,
+		"jsx": "preserve"
+		//"sourceMap": true
+	},
+	"exclude": [
+		"node_modules",
+		"deploy",
+		"build"
+	]
+}
