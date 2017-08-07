@@ -18,3 +18,6 @@ npm run build
 
 # Start local server on 3000 (http://localhost:3000)
 npm run dev-server
+
+# Running application screenshot
+https://raw.githubusercontent.com/vyemialyanchyk/VendingMachine/master/running-app-example.png
