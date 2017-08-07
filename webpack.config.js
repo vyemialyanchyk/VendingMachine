@@ -3,7 +3,7 @@
 	ExtendedDefinePlugin = require('extended-define-webpack-plugin'),
 	HtmlWebpackPlugin = require('html-webpack-plugin'),
 	ChunkManifestPlugin = require('chunk-manifest-webpack2-plugin'),
-	ExtractTextPlugin = require('extract-text-webpack-plugin'),
+//	ExtractTextPlugin = require('extract-text-webpack-plugin'),
 	nodeEnv = process.env.NODE_ENV;
 
 var sourcePath = path.join(__dirname, "src");
@@ -19,15 +19,15 @@ var config = {
 		"vending_machine_application": "./app/vending-machine.js",
 		vendor: [
 			"babel-polyfill",
-			"classnames",
+			//"classnames",
 			"debug",
 			"react",
-			"react-addons-create-fragment",
+			//"react-addons-create-fragment",
 			"react-dom",
-			"react-dropzone",
+			//"react-dropzone",
 			"react-router",
-			"react-select",
-			"react-google-tag-manager",
+			//"react-select",
+			//"react-google-tag-manager",
 			"mobx",
 			"mobx-react"
 		]
@@ -134,16 +134,17 @@ var config = {
 			"process.env.NODE_ENV": `"${nodeEnv}"`
 		}),
 
-		new ExtractTextPlugin({
-			filename: "site-styles.[contenthash].css",
-			allChunks: true
-		}),
+		// new ExtractTextPlugin({
+		// 	filename: "site-styles.[contenthash].css",
+		// 	allChunks: true
+		// }),
 
 		new webpack.optimize.CommonsChunkPlugin({
 			filename: "vendor.bundle.[hash].js",
 			name: "vendor"
 		}),
-		new ChunkManifestPlugin()
+
+		new ChunkManifestPlugin(),
 	]
 };
 

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { IRouter } from 'react-router';
 import * as _ from 'lodash';
-import * as classNames from 'classnames';
-import { observable, action, computed } from 'mobx/lib/mobx';
+//import * as classNames from 'classnames';
+import { observable, action, computed } from 'mobx';
 import { observer } from 'mobx-react';
 import * as debugLib from 'debug';
 

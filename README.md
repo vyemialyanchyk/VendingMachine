@@ -9,6 +9,8 @@ npm install
 
 npm update
 
+npm install typings --global
+
 typings install
 
 # Prepare for start and for release
