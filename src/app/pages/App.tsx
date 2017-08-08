@@ -7,19 +7,17 @@ import Dashboard from './Dashboard';
 
 const log = debugLib('vm:App');
 
-interface IApp extends React.Props<App> {
-	route: any;
-	params: any;
+class PApp {
 }
 
 class SApp {
 }
 
 @observer
-class App extends React.Component<IApp, SApp> {
+class App extends React.Component<PApp, SApp> {
 
 	render() {
-		let childrenWithProps = React.Children.map(this.props.children, (child: any) => {
+		const childrenWithProps = React.Children.map(this.props.children, (child: any) => {
 			return React.cloneElement(child);
 		});
 		return (

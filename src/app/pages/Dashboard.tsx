@@ -12,7 +12,7 @@ const pathToPear = require('../../images/pear.jpg');
 
 const log = debugLib('vm:Dashboard');
 
-interface IDashboard extends React.Props<Dashboard> {
+class PDashboard {
 }
 
 class SDashboard {
@@ -43,19 +43,15 @@ class SDashboard {
 }
 
 @observer
-class Dashboard extends React.Component<IDashboard, SDashboard> {
+class Dashboard extends React.Component<PDashboard, SDashboard> {
 
-	constructor(props, context) {
-		super(props, context);
+	constructor(props) {
+		super(props);
 		this.state = new SDashboard();
 	}
 
-	context: {
-		router: IRouter;
-	}
-
 	render() {
-		let {state} = this;
+		const {state} = this;
 		return (
 			<div style={{
 				boxSizing: 'border-box',
@@ -158,7 +154,7 @@ class Dashboard extends React.Component<IDashboard, SDashboard> {
 	}
 
 	submit = () => {
-		let {state} = this;
+		const {state} = this;
 		state.moneyInMachine += state.moneyInputWhole ? Number(state.moneyInputWhole) : 0;
 	}
 
