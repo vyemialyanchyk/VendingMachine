@@ -20,4 +20,4 @@ npm run build
 npm run dev-server
 
 # Running application screenshot
-![running-app](https://raw.githubusercontent.com/vyemialyanchyk/VendingMachine/master/running-app-example.png)
+![running-app](https://raw.githubusercontent.com/vyemialyanchyk/VendingMachine/master/pics/running-app-example.png)
