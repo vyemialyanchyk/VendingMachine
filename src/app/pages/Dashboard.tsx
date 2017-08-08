@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { IRouter } from 'react-router';
 import * as _ from 'lodash';
-//import * as classNames from 'classnames';
 import { observable, action, computed } from 'mobx';
 import { observer } from 'mobx-react';
 import * as debugLib from 'debug';
@@ -151,7 +150,7 @@ class Dashboard extends React.Component<IDashboard, SDashboard> {
 				</a>
 				<span>Get yours: {state.vendingMachineOutput}</span>
 			</div>
-		);
+		)
 	}
 
 	updateMoneyInputValue = (event: any) => {

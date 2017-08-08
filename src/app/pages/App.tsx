@@ -37,13 +37,13 @@ class App extends React.Component<IApp, SApp> {
 					</div>
 				</main>
 			</div>
-		);
+		)
 	}
 
 	getDefault: () => void = () => {
 		return (
 			<Dashboard />
-		);
+		)
 	}
 }
 

@@ -3,46 +3,40 @@
 	ExtendedDefinePlugin = require('extended-define-webpack-plugin'),
 	HtmlWebpackPlugin = require('html-webpack-plugin'),
 	ChunkManifestPlugin = require('chunk-manifest-webpack2-plugin'),
-//	ExtractTextPlugin = require('extract-text-webpack-plugin'),
 	nodeEnv = process.env.NODE_ENV;
 
-var sourcePath = path.join(__dirname, "src");
+var sourcePath = path.join(__dirname, 'src');
 var DEBUG = nodeEnv.startsWith('dev');
-var basename = "";
+var basename = '';
 
-console.log("Configuring for: " + nodeEnv + ", DEBUG: " + DEBUG);
+console.log('Configuring for: ' + nodeEnv + ', DEBUG: ' + DEBUG);
 
 
 var config = {
 	context: sourcePath,
 	entry: {
-		"vending_machine_application": "./app/vending-machine.js",
+		'vending_machine_application': './app/vending-machine.js',
 		vendor: [
-			"babel-polyfill",
-			//"classnames",
-			"debug",
-			"react",
-			//"react-addons-create-fragment",
-			"react-dom",
-			//"react-dropzone",
-			"react-router",
-			//"react-select",
-			//"react-google-tag-manager",
-			"mobx",
-			"mobx-react"
+			'babel-polyfill',
+			'debug',
+			'react',
+			'react-dom',
+			'react-router',
+			'mobx',
+			'mobx-react'
 		]
 	},
 
-	devtool: "source-map",
+	devtool: 'source-map',
 
 	output: {
-		path: path.join(__dirname, "build"),
-		publicPath: basename + "/",
-		filename: "[name].bundle.[hash].js"
+		path: path.join(__dirname, 'build'),
+		publicPath: basename + '/',
+		filename: '[name].bundle.[hash].js'
 	},
 
 	devServer: {
-		contentBase: path.join(__dirname, "build"),
+		contentBase: path.join(__dirname, 'build'),
 		historyApiFallback: true
 	},
 
@@ -59,51 +53,51 @@ var config = {
 			}]
 		}, {
 			test: /\.js$/,
-			enforce: "pre",
-			loader: "source-map-loader"
+			enforce: 'pre',
+			loader: 'source-map-loader'
 		}, {
 			test: /\.js$/,
 			exclude: /(node_modules|bower_components)/,
 			use: [{
-				loader: "react-hot-loader"
+				loader: 'react-hot-loader'
 			}, {
-				loader: "babel-loader"
+				loader: 'babel-loader'
 			}]
 		}, {
 			test: /\.jsx$/,
 			exclude: /(node_modules|bower_components)/,
 			use: DEBUG ? [{
-				loader: "jsx-loader",
+				loader: 'jsx-loader',
 				options: {
 					insertPragma: 'React.DOM',
 					harmony: true
 				}
 			}, {
-				loader: "react-hot-loader"
+				loader: 'react-hot-loader'
 			}, {
-				loader: "babel-loader"
+				loader: 'babel-loader'
 			}] : [{
-				loader: "babel-loader"
+				loader: 'babel-loader'
 			}]
 		}, {
 			test: /\.tsx?$/,
 			exclude: /(node_modules|bower_components)/,
 			use: DEBUG ? [{
-				loader: "jsx-loader",
+				loader: 'jsx-loader',
 				options: {
 					insertPragma: 'React.DOM',
 					harmony: true
 				}
 			}, {
-				loader: "react-hot-loader"
+				loader: 'react-hot-loader'
 			}, {
-				loader: "babel-loader"
+				loader: 'babel-loader'
 			}, {
-				loader: "ts-loader"
+				loader: 'ts-loader'
 			}] : [{
-				loader: "babel-loader"
+				loader: 'babel-loader'
 			}, {
-				loader: "ts-loader"
+				loader: 'ts-loader'
 			}]
 		}]
 	},
@@ -111,18 +105,18 @@ var config = {
 	resolve: {
 		modules: [
 			sourcePath,
-			"node_modules"
+			'node_modules'
 		],
 		extensions: ['.js', '.jsx', '.ts', '.tsx']
 	},
 
 	plugins: [
 		new HtmlWebpackPlugin({
-			favicon: "favicons/favicon.ico",
-			filename: "index.html",
-			title: "Vending Machine",
-			chunks: ["vendor", "vending_machine_application"],
-			template: "index.html"
+			favicon: 'favicons/favicon.ico',
+			filename: 'index.html',
+			title: 'Vending Machine',
+			chunks: ['vendor', 'vending_machine_application'],
+			template: 'index.html'
 		}),
 
 		new ExtendedDefinePlugin({
@@ -131,17 +125,12 @@ var config = {
 		}),
 
 		new webpack.DefinePlugin({
-			"process.env.NODE_ENV": `"${nodeEnv}"`
+			'process.env.NODE_ENV': `'${nodeEnv}'`
 		}),
 
-		// new ExtractTextPlugin({
-		// 	filename: "site-styles.[contenthash].css",
-		// 	allChunks: true
-		// }),
-
 		new webpack.optimize.CommonsChunkPlugin({
-			filename: "vendor.bundle.[hash].js",
-			name: "vendor"
+			filename: 'vendor.bundle.[hash].js',
+			name: 'vendor'
 		}),
 
 		new ChunkManifestPlugin(),

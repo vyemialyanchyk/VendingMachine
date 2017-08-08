@@ -7,13 +7,13 @@ export enum GoodsEnum {
 	NONE = 0,
 	APPLE = 1,
 	PEAR = 2,
-	CHERRY = 3
+	CHERRY = 3,
 }
 export const GoodLabels: string[] = [
 	'',
 	'Apple',
 	'Pear',
-	'Cherry'
+	'Cherry',
 ]
 const GoodsEnum_names: string[] = Object.keys(GoodsEnum).filter(key => !isIndex(key));
 const GoodsEnum_indices: number[] = Object.keys(GoodsEnum).filter(key => isIndex(key)).map(index => Number(index));
