@@ -46,7 +46,7 @@
     "dependencies": {
         "babel-polyfill": "6.23.0",
         "base-64": "0.1.0",
-        "chunk-manifest-webpack2-plugin": "1.0.1",
+        "chunk-manifest-webpack-plugin": "1.1.2",
         "debug": "2.6.8",
         "lodash": "4.17.4",
         "mobx": "3.2.1",

@@ -2,7 +2,7 @@
 	webpack = require('webpack'),
 	ExtendedDefinePlugin = require('extended-define-webpack-plugin'),
 	HtmlWebpackPlugin = require('html-webpack-plugin'),
-	ChunkManifestPlugin = require('chunk-manifest-webpack2-plugin'),
+	ChunkManifestPlugin = require('chunk-manifest-webpack-plugin'),
 	nodeEnv = process.env.NODE_ENV;
 
 var sourcePath = path.join(__dirname, 'src');
@@ -16,15 +16,15 @@ var config = {
 	context: sourcePath,
 	entry: {
 		'vending_machine_application': './app/vending-machine.js',
-		vendor: [
-			'babel-polyfill',
-			'debug',
-			'react',
-			'react-dom',
-			'react-router',
-			'mobx',
-			'mobx-react'
-		]
+		// vendor: [
+		// 	'babel-polyfill',
+		// 	'debug',
+		// 	'react',
+		// 	'react-dom',
+		// 	'react-router',
+		// 	'mobx',
+		// 	'mobx-react'
+		// ]
 	},
 
 	devtool: 'source-map',
@@ -105,7 +105,7 @@ var config = {
 	resolve: {
 		modules: [
 			sourcePath,
-			'node_modules'
+			'node_modules',
 		],
 		extensions: ['.js', '.jsx', '.ts', '.tsx']
 	},
@@ -115,25 +115,30 @@ var config = {
 			favicon: 'favicons/favicon.ico',
 			filename: 'index.html',
 			title: 'Vending Machine',
-			chunks: ['vendor', 'vending_machine_application'],
-			template: 'index.html'
+			//chunks: ['vendor', 'vending_machine_application'],
+			chunks: ['vending_machine_application'],
+			template: 'index.html',
 		}),
 
 		new ExtendedDefinePlugin({
 			__DEBUG__: DEBUG,
-			__BASENAME__: basename
+			__BASENAME__: basename,
 		}),
 
 		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': `'${nodeEnv}'`
+			'process.env.NODE_ENV': `'${nodeEnv}'`,
 		}),
 
-		new webpack.optimize.CommonsChunkPlugin({
-			filename: 'vendor.bundle.[hash].js',
-			name: 'vendor'
-		}),
+		// new webpack.optimize.CommonsChunkPlugin({
+		// 	filename: 'vendor.bundle.[hash].js',
+		// 	name: 'vendor',
+		// }),
 
-		new ChunkManifestPlugin(),
+		new ChunkManifestPlugin({
+			filename: 'manifest.json',
+			manifestVariable: 'webpackManifest',
+			inlineManifest: false,
+		}),
 	]
 };
 
